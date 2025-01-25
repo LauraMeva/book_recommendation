@@ -94,6 +94,11 @@ streamlit run app/app.py
 
 Navigate to the URL provided by Streamlit to use the application.
 
+### **5. Access the Deployed App**
+
+You can also access the deployed app directly via Streamlit Cloud:
+Deployed App on Streamlit
+
 ---
 
 ## 🧪 **Testing the System**
@@ -111,6 +116,9 @@ Navigate to the URL provided by Streamlit to use the application.
 
     - Extend the similarity model to incorporate additional variables like genres, book ratings, and authors, instead of relying solely on descriptions.
 
+### **Note About the Data**
+The dataset used for this project is not included in the repository to save space. If you'd like access to the data, feel free to contact me (see the Contact section below).
+
 
 ---
 
@@ -126,7 +134,7 @@ Navigate to the URL provided by Streamlit to use the application.
 
 ## 🙋 **Contact**
 
-For questions or collaboration:
+For questions, collaboration, or to request access to the dataset:
 - **Name:** Laura Menéndez
 - **GitHub:** [LauraMeva](https://github.com/LauraMeva)
 - **LinkedIn:** [LauraMenendezVallejo](https://www.linkedin.com/in/lauramenendezvallejo/)
