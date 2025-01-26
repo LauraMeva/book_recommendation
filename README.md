@@ -96,6 +96,12 @@ Navigate to the URL provided by Streamlit to use the application.
 
 ---
 
+## 🌐 **Live Demo**
+The app is deployed and accessible via Streamlit Cloud:
+➡ [Try the App Here!](https://laurameva-book-recommendation-appapp-z3zlmj.streamlit.app/)
+
+---
+
 ## 🧪 **Testing the System**
 
 1. **Use the Streamlit App**
