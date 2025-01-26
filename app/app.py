@@ -103,10 +103,16 @@ def streamlit_app():
     st.sidebar.header("Options")
     st.sidebar.markdown("Configure your search:")
     
-    # Load data
+    # Download data
     google_drive_url = "https://drive.google.com/uc?id=1_CAPfen20aaJ0MjqbWRI4twzLt2F7XU6&export=download"
     output_file = os.path.join("data", "processed", "embeddings_app.csv")
+    os.makedirs(os.path.dirname(output_file), exist_ok=True)
     download_file_from_google_drive(google_drive_url, output_file)
+    if not os.path.exists(output_file):
+        st.error(f"The file {output_file} was not downloaded. Check the URL or permissions.")
+        return
+
+    # Load data
     df = load_data()
     if df.empty:
         st.error("Data could not be loaded. Please check the logs for more details.")
@@ -132,7 +138,7 @@ def streamlit_app():
     else:
         st.markdown("Select a book and click 'Find Similar Books' to get recommendations.")
             
-            
+
 if __name__ == "__main__":
     streamlit_app()
 
