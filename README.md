@@ -94,11 +94,6 @@ streamlit run app/app.py
 
 Navigate to the URL provided by Streamlit to use the application.
 
-### **5. Access the Deployed App**
-
-You can also access the deployed app directly via Streamlit Cloud:
-Deployed App on Streamlit
-
 ---
 
 ## 🧪 **Testing the System**
