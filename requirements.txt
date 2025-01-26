@@ -22,6 +22,7 @@ fastjsonschema==2.21.1
 filelock==3.16.1
 fonttools==4.55.3
 fsspec==2024.10.0
+gdown==5.2.0
 gitdb==4.0.11
 GitPython==3.1.43
 huggingface-hub==0.26.2
@@ -85,6 +86,7 @@ pyarrow==18.0.0
 pydeck==0.9.1
 Pygments==2.18.0
 pyparsing==3.2.1
+PySocks==1.7.1
 python-dateutil==2.9.0.post0
 pytz==2024.2
 PyYAML==6.0.2

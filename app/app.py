@@ -2,21 +2,25 @@
 app.py
 
 This script creates a Streamlit web application for the book recommendation system.
-It directly loads the preprocessed `embeddings.csv` file and allows users to find similar books
+It dynamically downloads the preprocessed `embeddings.csv` file from Google Drive,
+loads the data into a Pandas DataFrame, and enables users to find similar books
 based on cosine similarity of embeddings.
 
 Modules:
-- streamlit: For building the web application.
-- pandas: For handling book data.
-- src.generate_similarity: Contains the `find_similar_books` function for similarity calculations.
+- streamlit: For building the web application interface.
+- pandas: For handling and manipulating book data.
+- numpy: For numerical operations, specifically handling embeddings.
+- gdown: For downloading large files from Google Drive, handling confirmation warnings.
+- src.generate_similarity: Contains the `find_similar_books` function to calculate book similarities.
 
 Usage:
-Run the app with:
+Run the app locally using:
 $ streamlit run app/app.py
 """
 
 import streamlit as st
 import pandas as pd
+import gdown
 import sys
 import os
 import numpy as np
@@ -29,16 +33,32 @@ from src.generate_similarity import find_similar_books
 
 
 @st.cache_data
+
+def download_file_from_google_drive(url, output_path):
+    """
+    Downloads a large file from Google Drive using `gdown`.
+
+    Args:
+        url (str): Shared link from Google Drive.
+        output_path (str): Path where the downloaded file will be saved.
+    """
+    try:
+        gdown.download(url, output_path, quiet=False)
+        print(f"File successfully downloaded to: {output_path}")
+    except Exception as e:
+        print(f"Error downloading the file: {e}")
+
+
 def load_data() -> pd.DataFrame:
     """
-    Load the preprocessed book data from `embeddings.csv`.
+    Load the preprocessed book data from `embeddings_app.csv`.
 
     Returns:
         pd.DataFrame: DataFrame with book data and embeddings.
     """
 
     # Load preprocessed data
-    df = pd.read_csv('data/processed/embeddings.csv')
+    df = pd.read_csv('data/processed/embeddings_app.csv')
 
     # Clean and convert embedding strings into numpy arrays directly
     def parse_embedding(embedding_str):
@@ -84,6 +104,9 @@ def streamlit_app():
     st.sidebar.markdown("Configure your search:")
     
     # Load data
+    google_drive_url = "https://drive.google.com/uc?id=1_CAPfen20aaJ0MjqbWRI4twzLt2F7XU6&export=download"
+    output_file = os.path.join("data", "processed", "embeddings_app.csv")
+    download_file_from_google_drive(google_drive_url, output_file)
     df = load_data()
     if df.empty:
         st.error("Data could not be loaded. Please check the logs for more details.")
@@ -108,6 +131,7 @@ def streamlit_app():
             st.markdown("---")  # Add a separator between books
     else:
         st.markdown("Select a book and click 'Find Similar Books' to get recommendations.")
+            
             
 if __name__ == "__main__":
     streamlit_app()
